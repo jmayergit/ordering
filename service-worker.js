@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ordering/precache-manifest.826a9d268f359ea4c4013ad1fa5b0f8f.js"
+  "/jmayergit/ordering/precache-manifest.5f3ffa9c68177e78b48fa24327d85a98.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/ordering/index.html", {
+workbox.routing.registerNavigationRoute("/jmayergit/ordering/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

@@ -1,13 +1,13 @@
 {
-  "main.css": "/ordering/static/css/main.a54ec38f.chunk.css",
-  "main.js": "/ordering/static/js/main.4f1920e4.chunk.js",
-  "main.js.map": "/ordering/static/js/main.4f1920e4.chunk.js.map",
-  "static/js/1.bdd2f127.chunk.js": "/ordering/static/js/1.bdd2f127.chunk.js",
-  "static/js/1.bdd2f127.chunk.js.map": "/ordering/static/js/1.bdd2f127.chunk.js.map",
-  "runtime~main.js": "/ordering/static/js/runtime~main.201270a0.js",
-  "runtime~main.js.map": "/ordering/static/js/runtime~main.201270a0.js.map",
-  "static/css/main.a54ec38f.chunk.css.map": "/ordering/static/css/main.a54ec38f.chunk.css.map",
-  "index.html": "/ordering/index.html",
-  "precache-manifest.826a9d268f359ea4c4013ad1fa5b0f8f.js": "/ordering/precache-manifest.826a9d268f359ea4c4013ad1fa5b0f8f.js",
-  "service-worker.js": "/ordering/service-worker.js"
+  "main.css": "/jmayergit/ordering/static/css/main.a54ec38f.chunk.css",
+  "main.js": "/jmayergit/ordering/static/js/main.dd4cb467.chunk.js",
+  "main.js.map": "/jmayergit/ordering/static/js/main.dd4cb467.chunk.js.map",
+  "static/js/1.bdd2f127.chunk.js": "/jmayergit/ordering/static/js/1.bdd2f127.chunk.js",
+  "static/js/1.bdd2f127.chunk.js.map": "/jmayergit/ordering/static/js/1.bdd2f127.chunk.js.map",
+  "runtime~main.js": "/jmayergit/ordering/static/js/runtime~main.9a6db5fd.js",
+  "runtime~main.js.map": "/jmayergit/ordering/static/js/runtime~main.9a6db5fd.js.map",
+  "static/css/main.a54ec38f.chunk.css.map": "/jmayergit/ordering/static/css/main.a54ec38f.chunk.css.map",
+  "index.html": "/jmayergit/ordering/index.html",
+  "precache-manifest.5f3ffa9c68177e78b48fa24327d85a98.js": "/jmayergit/ordering/precache-manifest.5f3ffa9c68177e78b48fa24327d85a98.js",
+  "service-worker.js": "/jmayergit/ordering/service-worker.js"
 }
