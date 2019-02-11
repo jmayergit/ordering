@@ -3,26 +3,35 @@ import './Home.css'
 import SelectInput from '../components/SelectInput'
 import Item from '../components/Item'
 import SubmitButton from '../components/SubmitButton'
+import Errors from '../components/Errors'
+import RESTAURANTS from '../data/restaurants'
+import DISHES from '../data/dishes'
 
 class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      part: 3,
+      part: 1,
 
       meal_category: 'breakfast',
       number_of_people: 1,
       restaurant: '',
 
-      restaurants: ['MyWoman','WoMan','Lutine'],
+      restaurants: [],
 
-      dishes_not_ordered: ['Tuna', 'Sushi'],
-      order: [['Steamed Ribs', 1]], // [[dish, servings]]
+      dishes: [],
+      order: [], // [[dish, servings]],
+
+      errors: [],
+      submitDisabled: false
     }
   }
 
   handleMealCategory = (synEvent) => {
-
+    const meal_category = synEvent.currentTarget.value
+    this.setState({
+      meal_category: meal_category
+    })
   }
 
   handleNumberOfPeople = (synEvent) => {
@@ -32,9 +41,19 @@ class Home extends React.Component {
     })
   }
 
-  handlePart1Submit = () => {
+  handleBackClick = () => {
+    const part = this.state.part
     this.setState({
-      part: 2
+      part: part - 1
+    })
+  }
+
+  handlePart1Submit = () => {
+    const restaurants = RESTAURANTS[this.state.meal_category]
+    this.setState({
+      part: 2,
+      restaurant: restaurants[0],
+      restaurants: restaurants
     })
   }
 
@@ -45,9 +64,29 @@ class Home extends React.Component {
     })
   }
 
+  getDishes = () => {
+    let dishes = []
+    DISHES["dishes"].map((dish) => {
+      if(dish["restaurant"] === this.state.restaurant && dish["availableMeals"].includes(this.state.meal_category)) {
+        dishes.push(dish["name"])
+      }
+    })
+    return dishes
+  }
+
   handlePart2Submit = () => {
+    const dishes = this.getDishes()
     this.setState({
-      part: 3
+      part: 3,
+      dishes: dishes
+    })
+  }
+
+  addItem = () => {
+    let order = this.state.order
+    order.push([this.state.dishes[0], 1])
+    this.setState({
+      order: order
     })
   }
 
@@ -69,16 +108,63 @@ class Home extends React.Component {
     })
   }
 
-  handlePart3Submit = (synEvent) => {
-    
+  rightNumberOfServings = () => {
+    let total_servings = 0
+    this.state.order.map(item =>
+      total_servings += item[1]
+    )
+    return total_servings >= this.state.number_of_people && total_servings <= 10
+  }
+
+  repeatingDish = () => {
+    let dishes = {}
+    let repeat = false
+    this.state.order.map((item) => {
+      if(dishes[item[0]]) {
+        repeat = true
+      }else {
+        dishes[item[0]] = true
+      }
+    })
+    return repeat
+  }
+
+  handlePart3Submit = () => {
+    let errors = []
+    // total servings >= no of peope && total servings <= 10
+    // same dish not ordered twice
+    if(!this.rightNumberOfServings()) {
+      errors.push("Must have at least one item for each person and the total number of items cannot be greater than ten.")
+    }
+
+    if(this.repeatingDish()) {
+      errors.push("Cannot select the same dish twice, instead try adding more servings.")
+    }
+
+    this.setState({
+      errors: errors
+    })
+
+    if(errors.length === 0) {
+      this.setState({
+        part: 4
+      })
+    }
+  }
+
+  handlePart4Submit = () => {
+    console.log("________________");
+    console.log("Order:");
+    console.log(this.state.order);
+    console.log("________________");
   }
 
   part1 = () => {
     return (
       <div>
-        <div>Part 1</div>
+        <h3>Select the type of meal and the number of people in your party</h3>
         <div>
-          <select handleChange={this.handleMealCategory}>
+          <select value={this.state.meal_category} onChange={this.handleMealCategory}>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
             <option value="dinner">Dinner</option>
@@ -94,38 +180,44 @@ class Home extends React.Component {
     )
   }
 
-  part2 = (restaurants) => {
+  part2 = () => {
     return (
       <div>
-        <div>
-          Part 2
-        </div>
-        <select handleChange={this.handleRestaurantChange}>
-          {restaurants.map(restaurant =>
+        <h3>
+          Select which restaurant
+        </h3>
+        <select value={this.state.restaurant} onChange={this.handleRestaurantChange}>
+          {this.state.restaurants.map(restaurant =>
             <option key={restaurant} value={restaurant}>{restaurant}</option>
           )}
         </select>
         <div>
+          <button onClick={this.handleBackClick}>Back</button>
           <SubmitButton text="Next" handleSubmit={this.handlePart2Submit} />
         </div>
       </div>
     )
   }
 
-  part3 = (order, dishes_not_ordered) => {
+  part3 = () => {
     return (
       <div>
-        <div>
-          Part 3
-        </div>
-        {order.map((item, index) =>
+        <h3>
+          Select dishes
+        </h3>
+        {this.state.order.map((item, index) =>
           <Item
             item={item}
             id={index}
-            dishes_not_ordered={dishes_not_ordered}
+            dishes={this.state.dishes}
             handleDish={this.handleDish}
             handleServings={this.handleServings}/>
         )}
+        <div>
+          <button onClick={this.addItem}>Add Item</button>
+          <button onClick={this.handleBackClick}>Back</button>
+          <SubmitButton text="Review Order" handleSubmit={this.handlePart3Submit} disabled={this.state.submitDisabled} />
+        </div>
       </div>
     )
   }
@@ -133,19 +225,29 @@ class Home extends React.Component {
   part4 = () => {
     return (
       <div>
-        Part 4
+        <h3>
+        Review order
+        </h3>
+        <div>
+          <ul>
+            {this.state.order.map(item =>
+              <li key={item}>{item[0]}: {item[1]}</li>
+            )}
+          </ul>
+        </div>
+        <SubmitButton text="Place Your Order" handleSubmit={this.handlePart4Submit} />
       </div>
     )
   }
 
-  presentForm = (part, restaurants, order, dishes_not_ordered) => {
-    switch(part) {
+  presentForm = () => {
+    switch(this.state.part) {
       case 1:
         return this.part1()
       case 2:
-        return this.part2(restaurants)
+        return this.part2()
       case 3:
-        return this.part3(order, dishes_not_ordered)
+        return this.part3()
       case 4:
         return this.part4()
       default:
@@ -154,10 +256,10 @@ class Home extends React.Component {
   }
 
   render() {
-    const { part, restaurants, order, dishes_not_ordered } = this.state
     return (
       <div className="Home">
-        {this.presentForm(part, restaurants, order, dishes_not_ordered)}
+        {this.presentForm()}
+        {this.state.errors.length > 0 && <Errors messages={this.state.errors} />}
       </div>
     );
   }

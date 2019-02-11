@@ -1,0 +1,24 @@
+{
+  "breakfast": [
+    "Mc Donalds",
+    "Vege Deli",
+    "Olive Garden"
+  ],
+  "lunch": [
+    "Mc Donalds",
+    "Taco Bell",
+    "Vege Deli",
+    "Pizzeria",
+    "Panda Express",
+    "Olive Garden"
+  ],
+  "dinner": [
+    "Mc Donalds",
+    "Taco Bell",
+    "BBQ Hut",
+    "Vege Deli",
+    "Pizzeria",
+    "Panda Express",
+    "Olive Garden"
+  ]
+}

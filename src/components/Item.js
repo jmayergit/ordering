@@ -5,12 +5,12 @@ import SelectInput from './SelectInput'
 class Item extends React.Component {
   render() {
     // item [dish, servings]
-    const { item, dishes_not_ordered, id } = this.props
+    const { item, dishes, id } = this.props
     return (
       <div>
         <select onChange={(e) => this.props.handleDish(e, id)}>
           <option key={item[0]} value={item[0]}>{item[0]}</option>
-          {dishes_not_ordered.map(dish_no =>
+          {dishes.map(dish_no =>
             <option key={dish_no} value={dish_no}>{dish_no}</option>
           )}
         </select>
@@ -21,7 +21,9 @@ class Item extends React.Component {
 }
 
 Item.propTypes = {
-  item: PropTypes.array
+  item: PropTypes.array,
+  dishes: PropTypes.array,
+  id: PropTypes.number
 }
 
 export default Item
