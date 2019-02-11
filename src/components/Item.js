@@ -8,13 +8,12 @@ class Item extends React.Component {
     const { item, dishes, id } = this.props
     return (
       <div>
-        <select onChange={(e) => this.props.handleDish(e, id)}>
-          <option key={item[0]} value={item[0]}>{item[0]}</option>
+        <select value={item[0]} onChange={(e) => this.props.handleDish(e, id)}>
           {dishes.map(dish_no =>
             <option key={dish_no} value={dish_no}>{dish_no}</option>
           )}
         </select>
-        <SelectInput values={[1,2,3,4,5,6,7,8,9,10]} handleChange={(e) => this.props.handleServings(e, id)} />
+        <SelectInput value={item[1]} values={[1,2,3,4,5,6,7,8,9,10]} handleChange={(e) => this.props.handleServings(e, id)} />
       </div>
     )
   }

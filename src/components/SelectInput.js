@@ -15,7 +15,7 @@ class SelectInput extends React.Component {
 }
 
 SelectInput.propTypes = {
-  values: PropTypes.array,
+  values: PropTypes.array.isRequired,
   handleChange: PropTypes.func
 };
 

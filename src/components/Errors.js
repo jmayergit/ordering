@@ -14,7 +14,7 @@ class Errors extends React.Component {
 }
 
 Errors.propTypes = {
-  messages: PropTypes.arr
+  messages: PropTypes.array.isRequired
 }
 
 export default Errors

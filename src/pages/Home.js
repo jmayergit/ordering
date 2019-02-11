@@ -22,8 +22,7 @@ class Home extends React.Component {
       dishes: [],
       order: [], // [[dish, servings]],
 
-      errors: [],
-      submitDisabled: false
+      errors: []
     }
   }
 
@@ -75,10 +74,12 @@ class Home extends React.Component {
   }
 
   handlePart2Submit = () => {
+    // to do: don't reset order if restaurant stays the same
     const dishes = this.getDishes()
     this.setState({
       part: 3,
-      dishes: dishes
+      dishes: dishes,
+      order: []
     })
   }
 
@@ -131,12 +132,9 @@ class Home extends React.Component {
 
   handlePart3Submit = () => {
     let errors = []
-    // total servings >= no of peope && total servings <= 10
-    // same dish not ordered twice
     if(!this.rightNumberOfServings()) {
       errors.push("Must have at least one item for each person and the total number of items cannot be greater than ten.")
     }
-
     if(this.repeatingDish()) {
       errors.push("Cannot select the same dish twice, instead try adding more servings.")
     }
@@ -209,6 +207,7 @@ class Home extends React.Component {
           <Item
             item={item}
             id={index}
+            key={index}
             dishes={this.state.dishes}
             handleDish={this.handleDish}
             handleServings={this.handleServings}/>
@@ -216,7 +215,7 @@ class Home extends React.Component {
         <div>
           <button onClick={this.addItem}>Add Item</button>
           <button onClick={this.handleBackClick}>Back</button>
-          <SubmitButton text="Review Order" handleSubmit={this.handlePart3Submit} disabled={this.state.submitDisabled} />
+          <SubmitButton text="Review Order" handleSubmit={this.handlePart3Submit} />
         </div>
       </div>
     )
@@ -230,11 +229,12 @@ class Home extends React.Component {
         </h3>
         <div>
           <ul>
-            {this.state.order.map(item =>
+            {this.state.order.map((item) => (
               <li key={item}>{item[0]}: {item[1]}</li>
-            )}
+            ))}
           </ul>
         </div>
+        <button onClick={this.handleBackClick}>Back</button>
         <SubmitButton text="Place Your Order" handleSubmit={this.handlePart4Submit} />
       </div>
     )

@@ -3,17 +3,16 @@ import PropTypes from 'prop-types'
 
 class SubmitButton extends React.Component {
   render() {
-    const { text, disabled } = this.props
+    const { text } = this.props
     return (
-      <button disabled={disabled} onClick={this.props.handleSubmit}>{text}</button>
+      <button onClick={this.props.handleSubmit}>{text}</button>
     )
   }
 }
 
 SubmitButton.propTypes = {
   text: PropTypes.string,
-  handleSubmit: PropTypes.func,
-  disabled: PropTypes.bool
+  handleSubmit: PropTypes.func
 }
 
 export default SubmitButton
