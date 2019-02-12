@@ -2,7 +2,11 @@
   "breakfast": [
     "Mc Donalds",
     "Vege Deli",
-    "Olive Garden"
+    "Olive Garden",
+    "St. Marc Café",
+    "Tully's",
+    "4/4 Seasons Coffee",
+    "Starbucks"
   ],
   "lunch": [
     "Mc Donalds",
@@ -10,7 +14,11 @@
     "Vege Deli",
     "Pizzeria",
     "Panda Express",
-    "Olive Garden"
+    "Olive Garden",
+    "St. Marc Café",
+    "Tully's",
+    "4/4 Seasons Coffee",
+    "Starbucks"
   ],
   "dinner": [
     "Mc Donalds",
@@ -19,6 +27,10 @@
     "Vege Deli",
     "Pizzeria",
     "Panda Express",
-    "Olive Garden"
+    "Olive Garden",
+    "St. Marc Café",
+    "Tully's",
+    "4/4 Seasons Coffee",
+    "Starbucks"
   ]
 }

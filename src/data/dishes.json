@@ -197,6 +197,30 @@
       "name": "Fettucine Pasta",
       "restaurant": "Olive Garden",
       "availableMeals": ["lunch", "dinner"]
+    },
+    {
+      "id": 34,
+      "name": "Latte",
+      "restaurant": "St. Marc Café",
+      "availableMeals": ["breakfast","lunch", "dinner"]
+    },
+    {
+      "id": 35,
+      "name": "Latte",
+      "restaurant": "Tully's",
+      "availableMeals": ["breakfast","lunch", "dinner"]
+    },
+    {
+      "id": 36,
+      "name": "Latte",
+      "restaurant": "4/4 Seasons Coffee",
+      "availableMeals": ["breakfast","lunch", "dinner"]
+    },
+    {
+      "id": 37,
+      "name": "Latte",
+      "restaurant": "Starbucks",
+      "availableMeals": ["breakfast","lunch", "dinner"]
     }
   ]
 }
