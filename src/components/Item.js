@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SelectInput from './SelectInput'
+import './Item.css'
 
 class Item extends React.Component {
   render() {
     // item [dish, servings]
     const { item, dishes, id } = this.props
     return (
-      <div>
+      <div className="item">
         <select value={item[0]} onChange={(e) => this.props.handleDish(e, id)}>
           {dishes.map(dish_no =>
             <option key={dish_no} value={dish_no}>{dish_no}</option>

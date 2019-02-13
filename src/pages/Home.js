@@ -65,7 +65,7 @@ class Home extends React.Component {
 
   getDishes = () => {
     let dishes = []
-    DISHES["dishes"].map((dish) => {
+    DISHES["dishes"].forEach((dish) => {
       if(dish["restaurant"] === this.state.restaurant && dish["availableMeals"].includes(this.state.meal_category)) {
         dishes.push(dish["name"])
       }
@@ -86,6 +86,14 @@ class Home extends React.Component {
   addItem = () => {
     let order = this.state.order
     order.push([this.state.dishes[0], 1])
+    this.setState({
+      order: order
+    })
+  }
+
+  removeItem = (synEvent, index) => {
+    let order = this.state.order
+    order.splice(index, 1)
     this.setState({
       order: order
     })
@@ -120,7 +128,7 @@ class Home extends React.Component {
   repeatingDish = () => {
     let dishes = {}
     let repeat = false
-    this.state.order.map((item) => {
+    this.state.order.forEach((item) => {
       if(dishes[item[0]]) {
         repeat = true
       }else {
@@ -204,13 +212,16 @@ class Home extends React.Component {
           Select dishes
         </h3>
         {this.state.order.map((item, index) =>
-          <Item
-            item={item}
-            id={index}
-            key={index}
-            dishes={this.state.dishes}
-            handleDish={this.handleDish}
-            handleServings={this.handleServings}/>
+          <div>
+            <Item
+              item={item}
+              id={index}
+              key={index}
+              dishes={this.state.dishes}
+              handleDish={this.handleDish}
+              handleServings={this.handleServings}/>
+            <button onClick={(e) => this.removeItem(e, index)}>X</button>
+          </div>
         )}
         <div>
           <button onClick={this.addItem}>Add Item</button>
